@@ -195,7 +195,11 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 
 - (void)setAuthorizationToken:(NSString *)authorizationToken
 {
-    [NSUserDefaults.standardUserDefaults setValue:authorizationToken forKey:kAuthorizationTokenStorageKey];
+    if (!authorizationToken) {
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:kAuthorizationTokenStorageKey];
+    } else {
+        [NSUserDefaults.standardUserDefaults setValue:authorizationToken forKey:kAuthorizationTokenStorageKey];
+    }
     [NSUserDefaults.standardUserDefaults synchronize];
 }
 
