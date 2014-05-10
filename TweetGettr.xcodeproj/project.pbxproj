@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63D8A68918EF18DD00BD6512 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D8A68818EF18DD00BD6512 /* Foundation.framework */; };
+		63D8A68B18EF18DD00BD6512 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D8A68A18EF18DD00BD6512 /* CoreGraphics.framework */; };
+		63D8A68D18EF18DD00BD6512 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D8A68C18EF18DD00BD6512 /* UIKit.framework */; };
+		63D8A69318EF18DD00BD6512 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A69118EF18DD00BD6512 /* InfoPlist.strings */; };
+		63D8A69518EF18DD00BD6512 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69418EF18DD00BD6512 /* main.m */; };
+		63D8A69918EF18DD00BD6512 /* JAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */; };
+		63D8A69C18EF18DD00BD6512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A69A18EF18DD00BD6512 /* Main.storyboard */; };
+		63D8A69F18EF18DD00BD6512 /* JAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69E18EF18DD00BD6512 /* JAMViewController.m */; };
+		63D8A6A118EF18DD00BD6512 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A6A018EF18DD00BD6512 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		63D8A68518EF18DD00BD6512 /* TweetGettr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TweetGettr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63D8A68818EF18DD00BD6512 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		63D8A68A18EF18DD00BD6512 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		63D8A68C18EF18DD00BD6512 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		63D8A69018EF18DD00BD6512 /* TweetGettr-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TweetGettr-Info.plist"; sourceTree = "<group>"; };
+		63D8A69218EF18DD00BD6512 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		63D8A69418EF18DD00BD6512 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		63D8A69618EF18DD00BD6512 /* TweetGettr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TweetGettr-Prefix.pch"; sourceTree = "<group>"; };
+		63D8A69718EF18DD00BD6512 /* JAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAMAppDelegate.h; sourceTree = "<group>"; };
+		63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JAMAppDelegate.m; sourceTree = "<group>"; };
+		63D8A69B18EF18DD00BD6512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		63D8A69D18EF18DD00BD6512 /* JAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAMViewController.h; sourceTree = "<group>"; };
+		63D8A69E18EF18DD00BD6512 /* JAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JAMViewController.m; sourceTree = "<group>"; };
+		63D8A6A018EF18DD00BD6512 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63D8A68218EF18DD00BD6512 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63D8A68B18EF18DD00BD6512 /* CoreGraphics.framework in Frameworks */,
+				63D8A68D18EF18DD00BD6512 /* UIKit.framework in Frameworks */,
+				63D8A68918EF18DD00BD6512 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63D8A67C18EF18DC00BD6512 = {
+			isa = PBXGroup;
+			children = (
+				63D8A68E18EF18DD00BD6512 /* TweetGettr */,
+				63D8A68718EF18DD00BD6512 /* Frameworks */,
+				63D8A68618EF18DD00BD6512 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63D8A68618EF18DD00BD6512 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63D8A68518EF18DD00BD6512 /* TweetGettr.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63D8A68718EF18DD00BD6512 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63D8A68818EF18DD00BD6512 /* Foundation.framework */,
+				63D8A68A18EF18DD00BD6512 /* CoreGraphics.framework */,
+				63D8A68C18EF18DD00BD6512 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63D8A68E18EF18DD00BD6512 /* TweetGettr */ = {
+			isa = PBXGroup;
+			children = (
+				63D8A69718EF18DD00BD6512 /* JAMAppDelegate.h */,
+				63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */,
+				63D8A69A18EF18DD00BD6512 /* Main.storyboard */,
+				63D8A69D18EF18DD00BD6512 /* JAMViewController.h */,
+				63D8A69E18EF18DD00BD6512 /* JAMViewController.m */,
+				63D8A6A018EF18DD00BD6512 /* Images.xcassets */,
+				63D8A68F18EF18DD00BD6512 /* Supporting Files */,
+			);
+			path = TweetGettr;
+			sourceTree = "<group>";
+		};
+		63D8A68F18EF18DD00BD6512 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				63D8A69018EF18DD00BD6512 /* TweetGettr-Info.plist */,
+				63D8A69118EF18DD00BD6512 /* InfoPlist.strings */,
+				63D8A69418EF18DD00BD6512 /* main.m */,
+				63D8A69618EF18DD00BD6512 /* TweetGettr-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63D8A68418EF18DD00BD6512 /* TweetGettr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63D8A6B718EF18DD00BD6512 /* Build configuration list for PBXNativeTarget "TweetGettr" */;
+			buildPhases = (
+				63D8A68118EF18DD00BD6512 /* Sources */,
+				63D8A68218EF18DD00BD6512 /* Frameworks */,
+				63D8A68318EF18DD00BD6512 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TweetGettr;
+			productName = TweetGettr;
+			productReference = 63D8A68518EF18DD00BD6512 /* TweetGettr.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63D8A67D18EF18DC00BD6512 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JAM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jeff Menter";
+			};
+			buildConfigurationList = 63D8A68018EF18DC00BD6512 /* Build configuration list for PBXProject "TweetGettr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63D8A67C18EF18DC00BD6512;
+			productRefGroup = 63D8A68618EF18DD00BD6512 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63D8A68418EF18DD00BD6512 /* TweetGettr */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63D8A68318EF18DD00BD6512 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63D8A6A118EF18DD00BD6512 /* Images.xcassets in Resources */,
+				63D8A69318EF18DD00BD6512 /* InfoPlist.strings in Resources */,
+				63D8A69C18EF18DD00BD6512 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63D8A68118EF18DD00BD6512 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63D8A69518EF18DD00BD6512 /* main.m in Sources */,
+				63D8A69918EF18DD00BD6512 /* JAMAppDelegate.m in Sources */,
+				63D8A69F18EF18DD00BD6512 /* JAMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		63D8A69118EF18DD00BD6512 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63D8A69218EF18DD00BD6512 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		63D8A69A18EF18DD00BD6512 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63D8A69B18EF18DD00BD6512 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63D8A6B518EF18DD00BD6512 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		63D8A6B618EF18DD00BD6512 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63D8A6B818EF18DD00BD6512 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TweetGettr/TweetGettr-Prefix.pch";
+				INFOPLIST_FILE = "TweetGettr/TweetGettr-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		63D8A6B918EF18DD00BD6512 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TweetGettr/TweetGettr-Prefix.pch";
+				INFOPLIST_FILE = "TweetGettr/TweetGettr-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63D8A68018EF18DC00BD6512 /* Build configuration list for PBXProject "TweetGettr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63D8A6B518EF18DD00BD6512 /* Debug */,
+				63D8A6B618EF18DD00BD6512 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63D8A6B718EF18DD00BD6512 /* Build configuration list for PBXNativeTarget "TweetGettr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63D8A6B818EF18DD00BD6512 /* Debug */,
+				63D8A6B918EF18DD00BD6512 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63D8A67D18EF18DC00BD6512 /* Project object */;
+}
