@@ -39,6 +39,7 @@
 @property (nonatomic) NSArray *tweets;
 @property (nonatomic) NSString *authorizationToken;
 @property (nonatomic) UIActivityIndicatorView *spinner;
+@property (nonatomic) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation JAMViewController
@@ -59,6 +60,12 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.twitterNameTextField.rightView = self.spinner;
     self.twitterNameTextField.rightViewMode = UITextFieldViewModeAlways;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.tweetsTableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+    self.selectedIndexPath = nil;
 }
 
 #pragma mark - UI Actions
@@ -159,7 +166,7 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
     cell.detailTextLabel.text = tweet[@"created_at"];
     cell.detailTextLabel.textColor = UIColor.grayColor;
-    cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.90 alpha:1];
+    cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
     return cell;
 }
 
@@ -167,18 +174,20 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.navigationController pushViewController:[self detailViewControllerForTweet:self.tweets[indexPath.row]] animated:YES];
+    self.selectedIndexPath = indexPath;
+    [self.navigationController pushViewController:[self detailViewControllerForTweet:self.tweets[indexPath.row]]
+                                         animated:YES];
 }
 
 - (UIViewController *)detailViewControllerForTweet:(NSDictionary *)tweet;
 {
-    UIViewController *tweetDetailViewController = UIViewController.new;
-    tweetDetailViewController.title = @"TweetDetails";
     UITextView *tweetDetailTextView = UITextView.new;
     tweetDetailTextView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     tweetDetailTextView.text = tweet.description;
     tweetDetailTextView.editable = NO;
+    
+    UIViewController *tweetDetailViewController = UIViewController.new;
+    tweetDetailViewController.title = @"TweetDetails";
     tweetDetailViewController.view = tweetDetailTextView;
     return tweetDetailViewController;
 }
