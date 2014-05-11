@@ -152,6 +152,8 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     return self.tweets.count;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"tweetCell";
@@ -170,8 +172,6 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
     return cell;
 }
-
-#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
