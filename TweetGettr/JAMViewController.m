@@ -166,6 +166,7 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
     cell.detailTextLabel.text = tweet[@"created_at"];
     cell.detailTextLabel.textColor = UIColor.grayColor;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
     return cell;
 }
