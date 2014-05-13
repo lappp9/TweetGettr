@@ -4,6 +4,13 @@
 
 #pragma mark - Private Categories
 
+@implementation NSArray (Utilities)
+- (NSString *)string;
+{
+    return [self componentsJoinedByString:@""];
+}
+@end
+
 @implementation NSURLResponse (Utilities)
 - (BOOL)httpRequestWasSuccessful;
 {
@@ -29,6 +36,18 @@
 {
     return [[self dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:kNilOptions];
 }
+
+- (NSURL *)url;
+{
+    return [NSURL URLWithString:self];
+}
+@end
+
+@implementation NSURL (Utilities)
+- (NSMutableURLRequest *)mutableRequest;
+{
+    return [NSMutableURLRequest.alloc initWithURL:self];
+}
 @end
 
 #pragma mark - Private Properties and Protocol Declarations
@@ -46,18 +65,21 @@
 // You will need to supply your own API Key and Secret before this will work.
 static NSString *const kAPIKey = @"";
 static NSString *const kAPISecret = @"";
+static NSString *const kPostMethod = @"POST";
+static NSString *const kGetMethod = @"GET";
+static NSString *const kContentTypeHeader = @"Content-Type";
+static NSString *const kAuthorizationHeader = @"Authorization";
 static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
-
+static NSString *const kTimelineRootURL = @"https://api.twitter.com/1.1/statuses/user_timeline.json?count=30&screen_name=";
+static NSString *const kAuthorizationBody = @"grant_type=client_credentials";
+static NSString *const kAuthorizationContentType = @"application/x-www-form-urlencoded;charset=UTF-8";
 
 #pragma mark - UIViewController Stuffs
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.twitterNameTextField addTarget:self action:@selector(twitterNameTextFieldChanged)
-                   forControlEvents:UIControlEventAllEditingEvents];
-    self.gettrButton.enabled = NO;
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.twitterNameTextField.rightView = self.spinner;
     self.twitterNameTextField.rightViewMode = UITextFieldViewModeAlways;
 }
@@ -78,7 +100,7 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
 
 #pragma mark - User Interface Actions
 
-- (void)twitterNameTextFieldChanged;
+- (IBAction)twitterNameTextFieldChanged;
 {
     self.gettrButton.enabled = self.twitterNameTextField.text.length;
 }
@@ -108,19 +130,16 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
 
 - (void)fetchAuthorizationToken;
 {
-    NSURL *tokenURL = [NSURL URLWithString:kOAuthRootURL];
-    NSMutableURLRequest *tokenRequest = [NSMutableURLRequest.alloc initWithURL:tokenURL];
-    tokenRequest.HTTPMethod = @"POST";
-    tokenRequest.HTTPBody = @"grant_type=client_credentials".data;
+    NSMutableURLRequest *tokenRequest = kOAuthRootURL.url.mutableRequest;
+    tokenRequest.HTTPMethod = kPostMethod;
+    tokenRequest.HTTPBody = kAuthorizationBody.data;
+    [tokenRequest addValue:kAuthorizationContentType forHTTPHeaderField:kContentTypeHeader];
+    [tokenRequest addValue:self.authorizationString forHTTPHeaderField:kAuthorizationHeader];
     
-    [tokenRequest addValue:@"application/x-www-form-urlencoded;charset=UTF-8"
-        forHTTPHeaderField:@"Content-Type"];
-    NSString *authorizationToken = [NSString stringWithFormat:@"%@:%@", kAPIKey, kAPISecret].base64EncodedString;
-    [tokenRequest addValue:[@"Basic " stringByAppendingString:authorizationToken]
-        forHTTPHeaderField:@"Authorization"];
-    
-    [NSURLConnection sendAsynchronousRequest:tokenRequest queue:NSOperationQueue.mainQueue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [NSURLConnection sendAsynchronousRequest:tokenRequest
+                                       queue:NSOperationQueue.mainQueue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+    {
         if (response.httpRequestWasSuccessful) {
             TGAppDelegate.shared.authorizationToken = data.json[@"access_token"];
             [self makeTwitterRequest];
@@ -134,23 +153,37 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
 
 - (void)makeTwitterRequest;
 {
-    NSString *urlString = [@"https://api.twitter.com/1.1/statuses/user_timeline.json?count=30&screen_name=" stringByAppendingString:self.twitterNameTextField.text];
-    NSURL *twitterURL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *twitterRequest = [NSMutableURLRequest.alloc initWithURL:twitterURL];
-    twitterRequest.HTTPMethod = @"GET";
-    [twitterRequest addValue:[@"Bearer " stringByAppendingString:TGAppDelegate.shared.authorizationToken]
-          forHTTPHeaderField:@"Authorization"];
+    NSMutableURLRequest *twitterRequest = @[kTimelineRootURL, self.twitterNameTextField.text].string.url.mutableRequest;
+    twitterRequest.HTTPMethod = kGetMethod;
+    [twitterRequest addValue:self.bearerString forHTTPHeaderField:kAuthorizationHeader];
     
-    [NSURLConnection sendAsynchronousRequest:twitterRequest queue:NSOperationQueue.mainQueue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [NSURLConnection sendAsynchronousRequest:twitterRequest
+                                       queue:NSOperationQueue.mainQueue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+    {
         if (response.httpRequestWasSuccessful) {
             self.tweets = data.json;
             [self.tweetsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tweetsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         } else {
             [self showAlertViewWithMessage:[NSString stringWithFormat:@"Something went wrong getting tweets:\n\n%@", connectionError.localizedDescription]];
         }
        [self.spinner stopAnimating];
     }];
+}
+
+- (NSString *)authorizationString;
+{
+    NSString *base64EncodedKeys = @[kAPIKey, @":", kAPISecret].string.base64EncodedString;
+    return @[@"Basic ", base64EncodedKeys].string;
+}
+
+- (NSString *)bearerString;
+{
+    if (TGAppDelegate.shared.authorizationToken) {
+        return @[@"Bearer ", TGAppDelegate.shared.authorizationToken].string;
+    }
+    return nil;
 }
 
 #pragma mark - UITableViewDataSource

@@ -18,11 +18,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="testFieldChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="155-np-mku"/>
+                                    <action selector="twitterNameTextFieldChanged" destination="vXZ-lx-hvc" eventType="editingChanged" id="hk1-h1-yFt"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="hGG-G2-EKT"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TPl-R5-1fO">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TPl-R5-1fO">
                                 <rect key="frame" x="265" y="75" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Gettr">
