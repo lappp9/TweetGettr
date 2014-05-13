@@ -79,13 +79,13 @@
 		63D8A68E18EF18DD00BD6512 /* TweetGettr */ = {
 			isa = PBXGroup;
 			children = (
-				63D8A6A018EF18DD00BD6512 /* Images.xcassets */,
-				63D8A69A18EF18DD00BD6512 /* Main.storyboard */,
-				63D8A68F18EF18DD00BD6512 /* Supporting Files */,
 				63D8A69718EF18DD00BD6512 /* TGAppDelegate.h */,
 				63D8A69818EF18DD00BD6512 /* TGAppDelegate.m */,
 				63D8A69D18EF18DD00BD6512 /* TGViewController.h */,
 				63D8A69E18EF18DD00BD6512 /* TGViewController.m */,
+				63D8A6A018EF18DD00BD6512 /* Images.xcassets */,
+				63D8A69A18EF18DD00BD6512 /* Main.storyboard */,
+				63D8A68F18EF18DD00BD6512 /* Supporting Files */,
 			);
 			path = TweetGettr;
 			sourceTree = "<group>";
