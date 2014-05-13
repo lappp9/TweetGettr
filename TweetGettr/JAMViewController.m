@@ -1,5 +1,6 @@
 
 #import "JAMViewController.h"
+#import "JAMAppDelegate.h"
 
 #pragma mark - Private Categories
 
@@ -37,9 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *gettrButton;
 @property (weak, nonatomic) IBOutlet UITableView *tweetsTableView;
 @property (nonatomic) NSArray *tweets;
-@property (nonatomic) NSString *authorizationToken;
 @property (nonatomic) UIActivityIndicatorView *spinner;
-@property (nonatomic) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation JAMViewController
@@ -49,7 +48,8 @@ static NSString *const kAPIKey = @"";
 static NSString *const kAPISecret = @"";
 static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
 
-static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
+
+#pragma mark - UIViewController Stuffs
 
 - (void)viewDidLoad
 {
@@ -64,11 +64,19 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.tweetsTableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
-    self.selectedIndexPath = nil;
+    [super viewDidAppear:animated];
+    [self.tweetsTableView deselectRowAtIndexPath:self.tweetsTableView.indexPathForSelectedRow animated:animated];
 }
 
-#pragma mark - UI Actions
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+{
+    UIViewController *destinationViewController = segue.destinationViewController;
+    UITextView *textView = (UITextView *)destinationViewController.view;
+    NSDictionary *tweet = self.tweets[[sender tag]];
+    textView.text = tweet.description;
+}
+
+#pragma mark - User Interface Actions
 
 - (void)twitterNameTextFieldChanged;
 {
@@ -79,7 +87,7 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 {
     [self.twitterNameTextField resignFirstResponder];
     [self.spinner startAnimating];
-    if (self.authorizationToken) {
+    if (JAMAppDelegate.shared.authorizationToken) {
         [self makeTwitterRequest];
     } else {
         [self fetchAuthorizationToken];
@@ -114,11 +122,11 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     [NSURLConnection sendAsynchronousRequest:tokenRequest queue:NSOperationQueue.mainQueue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (response.httpRequestWasSuccessful) {
-            self.authorizationToken = data.json[@"access_token"];
+            JAMAppDelegate.shared.authorizationToken = data.json[@"access_token"];
             [self makeTwitterRequest];
         } else {
             [self showAlertViewWithMessage:[NSString stringWithFormat:@"Something went wrong getting token:\n\n%@", connectionError.localizedDescription]];
-            self.authorizationToken = nil;
+            JAMAppDelegate.shared.authorizationToken = nil;
         }
         [self.spinner stopAnimating];
     }];
@@ -130,7 +138,7 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
     NSURL *twitterURL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *twitterRequest = [NSMutableURLRequest.alloc initWithURL:twitterURL];
     twitterRequest.HTTPMethod = @"GET";
-    [twitterRequest addValue:[@"Bearer " stringByAppendingString:self.authorizationToken]
+    [twitterRequest addValue:[@"Bearer " stringByAppendingString:JAMAppDelegate.shared.authorizationToken]
           forHTTPHeaderField:@"Authorization"];
     
     [NSURLConnection sendAsynchronousRequest:twitterRequest queue:NSOperationQueue.mainQueue
@@ -156,41 +164,14 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"tweetCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [UITableViewCell.alloc initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
+
     NSDictionary *tweet = self.tweets[indexPath.row];
-    cell.textLabel.numberOfLines = 4;
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.text = tweet[@"text"];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
     cell.detailTextLabel.text = tweet[@"created_at"];
-    cell.detailTextLabel.textColor = UIColor.grayColor;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
+    cell.tag = indexPath.row;
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    self.selectedIndexPath = indexPath;
-    [self.navigationController pushViewController:[self detailViewControllerForTweet:self.tweets[indexPath.row]]
-                                         animated:YES];
-}
-
-- (UIViewController *)detailViewControllerForTweet:(NSDictionary *)tweet;
-{
-    UITextView *tweetDetailTextView = UITextView.new;
-    tweetDetailTextView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
-    tweetDetailTextView.text = tweet.description;
-    tweetDetailTextView.editable = NO;
-    
-    UIViewController *tweetDetailViewController = UIViewController.new;
-    tweetDetailViewController.title = @"TweetDetails";
-    tweetDetailViewController.view = tweetDetailTextView;
-    return tweetDetailViewController;
 }
 
 #pragma mark - Alert Showing
@@ -199,23 +180,6 @@ static NSString *const kAuthorizationTokenStorageKey = @"authorizationToken";
 {
     [[UIAlertView.alloc initWithTitle:@"Oops!" message:message delegate:nil
                     cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
-}
-
-#pragma mark - Methods for Persistifying authorizationToken
-
-- (void)setAuthorizationToken:(NSString *)authorizationToken
-{
-    if (!authorizationToken) {
-        [NSUserDefaults.standardUserDefaults removeObjectForKey:kAuthorizationTokenStorageKey];
-    } else {
-        [NSUserDefaults.standardUserDefaults setValue:authorizationToken forKey:kAuthorizationTokenStorageKey];
-    }
-    [NSUserDefaults.standardUserDefaults synchronize];
-}
-
-- (NSString *)authorizationToken;
-{
-    return [NSUserDefaults.standardUserDefaults valueForKey:kAuthorizationTokenStorageKey];
 }
 
 @end
