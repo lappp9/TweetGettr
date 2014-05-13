@@ -72,7 +72,7 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
 {
     UIViewController *destinationViewController = segue.destinationViewController;
     UITextView *textView = (UITextView *)destinationViewController.view;
-    NSDictionary *tweet = self.tweets[[sender tag]];
+    NSDictionary *tweet = self.tweets[self.tweetsTableView.indexPathForSelectedRow.row];
     textView.text = tweet.description;
 }
 
@@ -170,7 +170,6 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
     cell.textLabel.text = tweet[@"text"];
     cell.detailTextLabel.text = tweet[@"created_at"];
     cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
-    cell.tag = indexPath.row;
     return cell;
 }
 
