@@ -169,7 +169,6 @@ static NSString *const kOAuthRootURL = @"https://api.twitter.com/oauth2/token";
     NSDictionary *tweet = self.tweets[indexPath.row];
     cell.textLabel.text = tweet[@"text"];
     cell.detailTextLabel.text = tweet[@"created_at"];
-    cell.backgroundColor = [UIColor colorWithWhite:(indexPath.row % 2) ? 0.95 : 0.975 alpha:1];
     return cell;
 }
 
