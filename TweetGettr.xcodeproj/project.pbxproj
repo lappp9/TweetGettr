@@ -12,9 +12,9 @@
 		63D8A68D18EF18DD00BD6512 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D8A68C18EF18DD00BD6512 /* UIKit.framework */; };
 		63D8A69318EF18DD00BD6512 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A69118EF18DD00BD6512 /* InfoPlist.strings */; };
 		63D8A69518EF18DD00BD6512 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69418EF18DD00BD6512 /* main.m */; };
-		63D8A69918EF18DD00BD6512 /* JAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */; };
+		63D8A69918EF18DD00BD6512 /* TGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69818EF18DD00BD6512 /* TGAppDelegate.m */; };
 		63D8A69C18EF18DD00BD6512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A69A18EF18DD00BD6512 /* Main.storyboard */; };
-		63D8A69F18EF18DD00BD6512 /* JAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69E18EF18DD00BD6512 /* JAMViewController.m */; };
+		63D8A69F18EF18DD00BD6512 /* TGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8A69E18EF18DD00BD6512 /* TGViewController.m */; };
 		63D8A6A118EF18DD00BD6512 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D8A6A018EF18DD00BD6512 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -27,11 +27,11 @@
 		63D8A69218EF18DD00BD6512 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		63D8A69418EF18DD00BD6512 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63D8A69618EF18DD00BD6512 /* TweetGettr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TweetGettr-Prefix.pch"; sourceTree = "<group>"; };
-		63D8A69718EF18DD00BD6512 /* JAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAMAppDelegate.h; sourceTree = "<group>"; };
-		63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JAMAppDelegate.m; sourceTree = "<group>"; };
+		63D8A69718EF18DD00BD6512 /* TGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGAppDelegate.h; sourceTree = "<group>"; };
+		63D8A69818EF18DD00BD6512 /* TGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGAppDelegate.m; sourceTree = "<group>"; };
 		63D8A69B18EF18DD00BD6512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		63D8A69D18EF18DD00BD6512 /* JAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAMViewController.h; sourceTree = "<group>"; };
-		63D8A69E18EF18DD00BD6512 /* JAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JAMViewController.m; sourceTree = "<group>"; };
+		63D8A69D18EF18DD00BD6512 /* TGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGViewController.h; sourceTree = "<group>"; };
+		63D8A69E18EF18DD00BD6512 /* TGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGViewController.m; sourceTree = "<group>"; };
 		63D8A6A018EF18DD00BD6512 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,13 +79,13 @@
 		63D8A68E18EF18DD00BD6512 /* TweetGettr */ = {
 			isa = PBXGroup;
 			children = (
-				63D8A69718EF18DD00BD6512 /* JAMAppDelegate.h */,
-				63D8A69818EF18DD00BD6512 /* JAMAppDelegate.m */,
-				63D8A69A18EF18DD00BD6512 /* Main.storyboard */,
-				63D8A69D18EF18DD00BD6512 /* JAMViewController.h */,
-				63D8A69E18EF18DD00BD6512 /* JAMViewController.m */,
 				63D8A6A018EF18DD00BD6512 /* Images.xcassets */,
+				63D8A69A18EF18DD00BD6512 /* Main.storyboard */,
 				63D8A68F18EF18DD00BD6512 /* Supporting Files */,
+				63D8A69718EF18DD00BD6512 /* TGAppDelegate.h */,
+				63D8A69818EF18DD00BD6512 /* TGAppDelegate.m */,
+				63D8A69D18EF18DD00BD6512 /* TGViewController.h */,
+				63D8A69E18EF18DD00BD6512 /* TGViewController.m */,
 			);
 			path = TweetGettr;
 			sourceTree = "<group>";
@@ -127,9 +127,9 @@
 		63D8A67D18EF18DC00BD6512 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = JAM;
+				CLASSPREFIX = TG;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "Jeff Menter";
+				ORGANIZATIONNAME = Somewhere;
 			};
 			buildConfigurationList = 63D8A68018EF18DC00BD6512 /* Build configuration list for PBXProject "TweetGettr" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -168,8 +168,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D8A69518EF18DD00BD6512 /* main.m in Sources */,
-				63D8A69918EF18DD00BD6512 /* JAMAppDelegate.m in Sources */,
-				63D8A69F18EF18DD00BD6512 /* JAMViewController.m in Sources */,
+				63D8A69918EF18DD00BD6512 /* TGAppDelegate.m in Sources */,
+				63D8A69F18EF18DD00BD6512 /* TGViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
